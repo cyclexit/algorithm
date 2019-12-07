@@ -1,0 +1,5 @@
+# executable file
+*.out
+
+# i/o data
+*.txt
