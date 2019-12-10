@@ -3,3 +3,6 @@
 
 # i/o data
 *.txt
+
+# shell script
+*.sh
