@@ -1,7 +1,3 @@
-/* 
- * author: cyclexit
- * start from: 2019-12-06 21:47:34
- */
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -37,13 +33,14 @@ int main() {
   ios::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
-  const int N = 5;
-  vector<int> v(N);
-  for (int i = 0; i < N; ++i) {
+  int n;
+  cin >> n;
+  vector<int> v(n);
+  for (int i = 0; i < n; ++i) {
     cin >> v[i];
   }
   merge_sort(v, 0, v.size() - 1);
-  for (int i = 0; i < N; ++i) {
+  for (int i = 0; i < n; ++i) {
     cout << v[i] << " ";
   }
   cout << '\n';

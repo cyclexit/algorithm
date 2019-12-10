@@ -1,7 +1,3 @@
-/* 
- * author: cyclexit
- * start from: 2019-12-09 22:20:20
- */
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -24,13 +20,14 @@ int main() {
   ios::sync_with_stdio(false);
   cin.tie(0);
   cout.tie(0);
-  const int N = 5;
-  vector<int> v(N);
-  for (int i = 0; i < N; ++i) {
+  int n;
+  cin >> n;
+  vector<int> v(n);
+  for (int i = 0; i < n; ++i) {
     cin >> v[i];
   }
   selection_sort(v);
-  for (int i = 0; i < N; ++i) {
+  for (int i = 0; i < n; ++i) {
     cout << v[i] << " ";
   }
   cout << '\n';
