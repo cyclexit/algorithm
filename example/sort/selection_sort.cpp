@@ -28,8 +28,7 @@ int main() {
   }
   selection_sort(v);
   for (int i = 0; i < n; ++i) {
-    cout << v[i] << " ";
+    cout << v[i] << '\n';
   }
-  cout << '\n';
   return 0;
 }

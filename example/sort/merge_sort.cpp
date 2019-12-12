@@ -41,8 +41,7 @@ int main() {
   }
   merge_sort(v, 0, v.size() - 1);
   for (int i = 0; i < n; ++i) {
-    cout << v[i] << " ";
+    cout << v[i] << '\n';
   }
-  cout << '\n';
   return 0;
 }
