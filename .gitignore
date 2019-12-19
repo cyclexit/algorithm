@@ -4,5 +4,5 @@
 # i/o data
 *.txt
 
-# shell script
-*.sh
+# generator
+gen.*
