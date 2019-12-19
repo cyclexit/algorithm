@@ -1,6 +1,9 @@
 # executable file
 *.out
 
+# test file
+test.cpp
+
 # i/o data
 *.txt
 
