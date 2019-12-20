@@ -14,7 +14,13 @@ class WeightedGraph {
   void add(int u, int v, int w) {
     edge[u].emplace_back(make_pair(v, w));
   }
-  // MST-Prim
+  /*
+   * MST-Prim
+   * The complexity of the algorithm depends on the implementation of the 
+   * priority queue.
+   * Binary heap: O(Elog(V) + Vlog(V))
+   * Fibonacci heap: O(E + log(V))
+   */
   // first: adjacent node
   // second: key(weight)
   vector<pair<int, int>> prim_mst;
