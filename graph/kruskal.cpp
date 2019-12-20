@@ -14,7 +14,16 @@ class WeightedGraph {
   void add(int u, int v, int w) {
     edge[u].emplace_back(make_pair(v, w));
   }
-  // MST-Kruskal
+  /*
+   * MST-Kruskal:
+   * This is my first implementation of the Kruskal algorithm.
+   * 
+   * Since the cost of the priority queue cannot be ignored,
+   * this implementation is less efficient than the other one.
+   * 
+   * The complexity of this implementation is still O(Elog(E)),
+   * but the constant will be large.
+   */
   struct Edge {
     int u, v, w;
     // constructor
@@ -33,7 +42,7 @@ class WeightedGraph {
         pq.emplace(Edge(i, x.first, x.second));
       }
     }
-    Dsu dsu = Dsu(n);
+    Dsu dsu = Dsu(n); // need to use Dsu class in data_struct/dsu.cpp
     while (!pq.empty()) {
       Edge e = pq.top();
       pq.pop();
