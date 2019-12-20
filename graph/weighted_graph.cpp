@@ -1,18 +1,6 @@
 // This class is used for unweighted graph
 // This class can be used for both directed and undirected graph
 class WeightedGraph {
- private:
-  // only used in the kruskal algorithm
-  struct Edge {
-    int u, v, w;
-    // constructor
-    Edge(int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
-    // operator
-    inline bool operator<(const Edge& e) const {
-      return w > e.w;
-    }
-  };
-
  public:
   int n;
   vector<vector<pair<int, int>>> edge;
@@ -24,7 +12,16 @@ class WeightedGraph {
   void add(int u, int v, int w) {
     edge[u].emplace_back(make_pair(v, w));
   }
-  // MST
+  // MST-Kruskal
+  struct Edge {
+    int u, v, w;
+    // constructor
+    Edge(int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
+    // operator
+    inline bool operator<(const Edge& e) const {
+      return w > e.w;
+    }
+  };
   int total = 0;
   vector<pair<int, int>> mst;
   void kruskal() {
