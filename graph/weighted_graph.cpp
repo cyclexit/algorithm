@@ -3,6 +3,8 @@
 class WeightedGraph {
  public:
   int n;
+  // first: adjacent node
+  // second: weight
   vector<vector<pair<int, int>>> edge;
   // constructor
   WeightedGraph(int _n) : n(_n) {
@@ -11,6 +13,38 @@ class WeightedGraph {
   // add a weighted edge
   void add(int u, int v, int w) {
     edge[u].emplace_back(make_pair(v, w));
+  }
+  // MST-Prim
+  // first: adjacent node
+  // second: key(weight)
+  vector<pair<int, int>> prim_mst;
+  void prim() {
+    const int INF = (int) 2e9;
+    prim_mst.resize(n);
+    for (int i = 0; i < n; ++i) {
+      prim_mst[i] = make_pair(-1, INF);
+    }
+    // first: key(weight)
+    // second: node index
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    // start from node 1
+    pq.emplace(make_pair(0, 1));
+    prim_mst[1].second = 0;
+    vector<bool> vis(n, false);
+    while (!pq.empty()) {
+      pair<int, int> cur = pq.top();
+      pq.pop();
+      vis[cur.second] = true;
+      for (auto x : edge[cur.second]) {
+        if (!vis[x.first]) {
+          pq.emplace(make_pair(x.second, x.first));
+          if (x.second < prim_mst[x.first].second) {
+            prim_mst[x.first].second = x.second;
+            prim_mst[x.first].first = cur.second;
+          }
+        }
+      }
+    }
   }
   // MST-Kruskal
   struct Edge {
@@ -23,7 +57,7 @@ class WeightedGraph {
     }
   };
   int total = 0;
-  vector<pair<int, int>> mst;
+  vector<Edge> kruskal_mst;
   void kruskal() {
     priority_queue<Edge> pq;
     for (int i = 0; i < n; ++i) {
@@ -31,14 +65,13 @@ class WeightedGraph {
         pq.emplace(Edge(i, x.first, x.second));
       }
     }
-    // need to the Dsu class in data_struct/dsu.cpp
     Dsu dsu = Dsu(n);
     while (!pq.empty()) {
       Edge e = pq.top();
       pq.pop();
       if (dsu.unite(e.u, e.v)) {
         total += e.w;
-        mst.emplace_back(make_pair(e.u, e.v));
+        kruskal_mst.emplace_back(e);
       }
     }
   }
