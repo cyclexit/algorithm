@@ -43,8 +43,8 @@ class WeightedGraph {
       vis[cur.second] = true;
       for (auto x : edge[cur.second]) {
         if (!vis[x.first]) {
-          pq.emplace(make_pair(x.second, x.first));
           if (x.second < mst[x.first].second) {
+            pq.emplace(make_pair(x.second, x.first));
             mst[x.first].second = x.second;
             mst[x.first].first = cur.second;
           }
