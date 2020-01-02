@@ -3,13 +3,13 @@ class WeightedGraph {
   int n;
   // first: adjacent node
   // second: weight
-  vector<vector<pair<int, int>>> edge;
+  vector<vector<pair<int, long long>>> edge;
   // constructor
   WeightedGraph(int _n) : n(_n) {
     edge.resize(n);
   }
   // add a weighted edge
-  void add(int u, int v, int w) {
+  void add(int u, int v, long long w) {
     edge[u].emplace_back(make_pair(v, w));
   }
   /*
@@ -20,15 +20,16 @@ class WeightedGraph {
    * the cost of dsu operations.
    */
   struct Edge {
-    int u, v, w;
+    int u, v;
+    long long w;
     // constructor
-    Edge(int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
+    Edge(int _u, int _v, long long _w) : u(_u), v(_v), w(_w) {}
     // operator
     inline bool operator<(const Edge& e) const {
       return w < e.w;
     }
   };
-  int total = 0;
+  long long total = 0;
   vector<Edge> mst;
   void kruskal() {
     vector<Edge> ev;

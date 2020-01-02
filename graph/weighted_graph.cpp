@@ -5,13 +5,13 @@ class WeightedGraph {
   int n;
   // first: adjacent node
   // second: weight
-  vector<vector<pair<int, int>>> edge;
+  vector<vector<pair<int, long long>>> edge;
   // constructor
   WeightedGraph(int _n) : n(_n) {
     edge.resize(n);
   }
   // add a weighted edge
-  void add(int u, int v, int w) {
+  void add(int u, int v, long long w) {
     edge[u].emplace_back(make_pair(v, w));
   }
 };

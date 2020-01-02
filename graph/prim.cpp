@@ -5,13 +5,13 @@ class WeightedGraph {
   int n;
   // first: adjacent node
   // second: weight
-  vector<vector<pair<int, int>>> edge;
+  vector<vector<pair<int, long long>>> edge;
   // constructor
   WeightedGraph(int _n) : n(_n) {
     edge.resize(n);
   }
   // add a weighted edge
-  void add(int u, int v, int w) {
+  void add(int u, int v, long long w) {
     edge[u].emplace_back(make_pair(v, w));
   }
   /*
@@ -23,22 +23,21 @@ class WeightedGraph {
    */
   // first: adjacent node
   // second: key(weight)
-  vector<pair<int, int>> mst;
+  vector<pair<int, long long>> mst;
   void prim() {
-    const int INF = (int) 2e9;
     mst.resize(n);
     for (int i = 0; i < n; ++i) {
-      mst[i] = make_pair(-1, INF);
+      mst[i] = make_pair(-1, LLONG_MAX);
     }
     // first: key(weight)
     // second: node index
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
     // start from node 1
     pq.emplace(make_pair(0, 1));
     mst[1].second = 0;
     vector<bool> vis(n, false);
     while (!pq.empty()) {
-      pair<int, int> cur = pq.top();
+      pair<int, long long> cur = pq.top();
       pq.pop();
       vis[cur.second] = true;
       for (auto x : edge[cur.second]) {
