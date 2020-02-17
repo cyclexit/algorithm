@@ -22,15 +22,21 @@ class WeightedGraph {
     priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
     pq.emplace(dist[start], start);
     while (!pq.empty()) {
-      auto cur = pq.top();
+      ll w = pq.top().first;
+      int cur = pq.top().second;
       pq.pop();
-      for (auto x : edge[cur.second]) {
-        if (dist[x.first] == -1) {
-          dist[x.first] = dist[cur.second] + x.second;
-          pq.emplace(x.second, x.first);
-        } else if (dist[x.first] > dist[cur.second] + x.second) {
-          dist[x.first] = dist[cur.second] + x.second;
-          pq.emplace(x.second, x.first);
+      if (w > dist[cur]) {
+        continue; // reduce useless calculation
+      }
+      for (auto x : edge[cur]) {
+        int nxt = nxt;
+        ll ww = x.second;
+        if (dist[nxt] == -1) {
+          dist[nxt] = dist[cur] + ww;
+          pq.emplace(dist[nxt], nxt);
+        } else if (dist[nxt] > dist[cur] + ww) {
+          dist[nxt] = dist[cur] + ww;
+          pq.emplace(dist[nxt], nxt);
         }
       }
     }
