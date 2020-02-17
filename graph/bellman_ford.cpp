@@ -2,16 +2,18 @@
 // This class can be used for both directed and undirected graph
 class WeightedGraph {
  public:
+  typedef long long ll;
+  
   int n;
   // first: adjacent node
   // second: weight
-  vector<vector<pair<int, long long>>> edge;
+  vector<vector<pair<int, ll>>> edge;
   // constructor
   WeightedGraph(int _n) : n(_n) {
     edge.resize(n);
   }
   // add a weighted edge
-  void add(int u, int v, long long w) {
+  void add(int u, int v, ll w) {
     edge[u].emplace_back(make_pair(v, w));
   }
   /*
@@ -21,7 +23,7 @@ class WeightedGraph {
    */
   // first: previous node
   // second: accumulated weight of the shortest path from the node 'start'
-  vector<pair<int, long long>> sp;
+  vector<pair<int, ll>> sp;
   bool bellman_ford(int start) {
     // initialize
     sp.resize(n);
