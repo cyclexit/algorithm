@@ -1,6 +1,9 @@
 # executable file
 *.out
 
+# template file
+template.cpp
+
 # test file
 test.cpp
 
