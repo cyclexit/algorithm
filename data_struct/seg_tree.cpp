@@ -1,17 +1,18 @@
 typedef long long ll;
+typedef const long long& cllr;
 
 const ll N = ...; // TODO: set max size
 struct Seg {
   ll l, r, v;
 } t[4*N];
-ll n, m, a[N], lz[4*N], ...; // TODO: add more lazy tags
+ll n, m, a[N], lz[4*N], ...; // TODO: add more lazy tags if needed
 
-inline void up(ll i) {
+inline void up(cllr i) {
   // TODO: change
   t[i].v = t[i<<1].v + t[i<<1|1].v;
 }
 
-void down(ll i) {
+void down(cllr i) {
   // TODO: change
   lz[i<<1] += lz[i];
   lz[i<<1|1] += lz[i];
@@ -23,7 +24,7 @@ void down(ll i) {
   up(i);
 }
 
-void build(ll i, ll l, ll r) {
+void build(cllr i, cllr l, cllr r) {
   t[i].l = l;
   t[i].r = r;
   if (l == r) {
@@ -37,7 +38,7 @@ void build(ll i, ll l, ll r) {
 }
 
 // update operation
-void update(ll i, ll l, ll r, ll v) {
+void update(cllr i, cllr l, cllr r, cllr v) {
   if (l <= t[i].l && t[i].r <= r) {
     // TODO: change
     t[i].v += (t[i].r - t[i].l + 1) * v;
@@ -52,7 +53,7 @@ void update(ll i, ll l, ll r, ll v) {
 }
 
 // query operation
-ll query(ll i, ll l, ll r) {
+ll query(cllr i, cllr l, cllr r) {
   if (l <= t[i].l && t[i].r <= r) {
     return t[i].v;
   }
