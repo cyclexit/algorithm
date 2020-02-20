@@ -59,8 +59,8 @@ ll query(cllr i, cllr l, cllr r) {
   }
   ll mid = (t[i].r + t[i].l) >> 1;
   down(i);
-  ll res = 0;
   // TODO: change
+  ll res = 0;
   if (l <= mid) res += query(i<<1, l, r);
   if (r > mid) res += query(i<<1|1, l, r);
   return res;
