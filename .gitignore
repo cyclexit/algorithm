@@ -1,14 +1,15 @@
-# executable file
-*.out
-
-# template file
-template.cpp
+# PLAYGROUND folder
+PLAYGROUND/
 
 # test file
 test.cpp
 
 # i/o data
-*.txt
+in.txt
+out.txt
+
+# executable file
+*.out
 
 # generator
 gen.*
