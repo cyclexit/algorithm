@@ -1,11 +1,14 @@
 typedef vector<complex<double>> vc;
 
-vc w;
+// inv_w is used in IDFT
+vc w, inv_w;
 void init_w(int n) {
   w.assign(n, 0);
+  inv_w.assign(n, 0);
   double pi = acos(-1);
   for (int i = 0; i != n; ++i) {
     w[i] = complex<double>(cos(2.0*pi*i/n), sin(2.0*pi*i/n));
+    inv_w[i] = conj(w[i]);
   }
 }
 
