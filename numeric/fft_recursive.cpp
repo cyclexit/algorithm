@@ -1,7 +1,7 @@
 typedef vector<complex<double>> vc;
 
 vc w;
-void init_W(int n) {
+void init_w(int n) {
   w.assign(n, 0);
   double pi = acos(-1);
   for (int i = 0; i != n; ++i) {
