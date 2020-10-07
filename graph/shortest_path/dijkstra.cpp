@@ -29,7 +29,7 @@ class WeightedGraph {
         continue; // reduce useless calculation
       }
       for (auto x : edge[cur]) {
-        int nxt = nxt;
+        int nxt = x.first;
         ll ww = x.second;
         if (dist[nxt] == -1) {
           dist[nxt] = dist[cur] + ww;
