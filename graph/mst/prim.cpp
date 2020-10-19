@@ -37,16 +37,19 @@ class WeightedGraph {
     pq.emplace(make_pair(0, 1));
     mst[1].second = 0;
     vector<bool> vis(n, false);
+    int vertex, nxt;
     while (!pq.empty()) {
-      pair<int, ll> cur = pq.top();
+      pair<ll, int> cur = pq.top();
       pq.pop();
-      vis[cur.second] = true;
-      for (auto x : edge[cur.second]) {
-        if (!vis[x.first]) {
-          if (x.second < mst[x.first].second) {
-            pq.emplace(make_pair(x.second, x.first));
-            mst[x.first].second = x.second;
-            mst[x.first].first = cur.second;
+      vertex = cur.second;
+      vis[vertex] = true;
+      for (auto x : edge[vertex]) {
+        nxt = x.first;
+        if (!vis[nxt]) {
+          if (x.second < mst[nxt].second) {
+            pq.emplace(make_pair(x.second, nxt));
+            mst[nxt].first = vertex;
+            mst[nxt].second = x.second;
           }
         }
       }
