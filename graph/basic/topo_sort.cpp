@@ -29,11 +29,9 @@ class Graph {
     for (int i = 0; i < n; ++i) {
       if (in_deg[i] == 0) q.push(i);
     }
-    int cnt = 0;
     while (!q.empty()) {
       int cur = q.front();
       q.pop();
-      ++cnt;
       topo.push_back(cur);
       for (int x : edge[cur]) {
         --in_deg[x];
@@ -42,11 +40,6 @@ class Graph {
         }
       }
     }
-    if (cnt < n) {
-      // The graph is not a DAG
-      return false;
-    } else {
-      return true;
-    }
+    return topo.size() == n;
   }
 };
