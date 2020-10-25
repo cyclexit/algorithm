@@ -28,7 +28,7 @@ class MatrixMult {
         if (end >= n) break;
         dp[i][end] = -1;
         for (int j = i; j < end; ++j) {
-          int cost = dp[i][j] + dp[j + 1][end] + matrix[i].first * matrix[j].second * matrix[end].second;
+          ll cost = dp[i][j] + dp[j + 1][end] + matrix[i].first * matrix[j].second * matrix[end].second;
           if (dp[i][end] == -1 || dp[i][end] > cost) {
             dp[i][end] = cost;
             pos[i][end] = j;
