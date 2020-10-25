@@ -2,48 +2,43 @@
 
 using namespace std;
 
-// These two functions use the top-down method to compute the length of LCS of two strings.
+// This class is to compute the length of the longest common subsequence of 
+// two strings.
+//
+// I use the memorization technique to improve the efficiency. This solution
+// also involve the dynamic programming methodology.
+// 
+// Let N = s1.size(), M = s2.size()
 // Time Complexity: O(N * M^2)
-// Space Complexity: O(N * M)
+// Space Complexity: O(N * M^2)
+class LCS {
+ private:
+  string s1, s2;
+  vector<vector<int>> memo;
+ public:
+  LCS() = default;
+  LCS(string _s1, string _s2) : s1(_s1), s2(_s2) {
+    memo.resize(s1.size(), vector<int>(s2.size(), -1));
+  }
 
-// This one is less efficienct, but easier to understand.
-int lcs(string& s1, string& s2) {
-  int n = s1.size(), m = s2.size();
-  if (n == 0 || m == 0) {
-    return 0;
-  }
-  int j = 0;
-  while (j < m && s2[j] != s1[0]) {
-    ++j;
-  }
-  // case 1: s1[0] is not in the optimal solution
-  string s1_sub = s1.substr(1);
-  int res1 = lcs(s1_sub, s2);
-  int res2 = 0;
-  if (j < m) {
-    // case 2: s1[0] is in the optimal solution
-    string s2_sub = s2.substr(j + 1);
-    res2 = 1 + lcs(s1_sub, s2_sub);
-  }
-  return max(res1, res2);
-}
+  int solve(int p1, int p2) {
+    if (p1 == s1.size() || p2 == s2.size()) {
+      return 0;
+    }
+    if (memo[p1][p2] != -1) {
+      return memo[p1][p2];
+    }
 
-// This one is more efficient, since this one does not create new string during the recursive.
-int lcs(string& s1, int p1, string& s2, int p2) {
-  int n = s1.size(), m = s2.size();
-  if (n == p1 || m == p2) {
-    return 0;
+    int j = p2;
+    while (j < s2.size() && s2[j] != s1[p1]) {
+      ++j;
+    }
+    int res1 = solve(p1 + 1, p2);
+    int res2 = 0;
+    if (j < s2.size()) {
+      res2 = 1 + solve(p1 + 1, j + 1);
+    }
+
+    return memo[p1][p2] = max(res1, res2);
   }
-  int j = p2;
-  while (j < m && s2[j] != s1[p1]) {
-    ++j;
-  }
-  // case 1: s1[0] is not in the optimal solution
-  int res1 = lcs(s1, p1 + 1, s2, p2);
-  int res2 = 0;
-  if (j < m) {
-    // case 2: s1[0] is in the optimal solution
-    res2 = 1 + lcs(s1, p1 + 1, s2, j + 1);
-  }
-  return max(res1, res2);
-}
+};
