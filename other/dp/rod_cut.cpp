@@ -60,13 +60,13 @@ int main() {
     for (int j = 0; j <= i; ++j) {
       if (dp[i] < dp[j] + price[i - j]) {
         dp[i] = dp[j] + price[i - j];
-        cutted[i] = j;
+        cutted[i] = i - j;
       }
     }
   }
   cout << dp[n] << '\n';
   function<void(int)> print_cut = [&](int len) {
-    if (cutted[len] == 0) {
+    if (cutted[len] == len) {
       cout << len << '\n';
       return;
     }
