@@ -21,7 +21,9 @@ int main() {
     cin >> v[i].second;
   }
   vector<vector<int>> dp(n, vector<int>(mx + 1, 0));
-  dp[0][v[0].second] = v[0].first;
+  if (v[0].second <= mx) {
+    dp[0][v[0].second] = v[0].first;
+  }
   for (int i = 1; i < n; ++i) {
     for (int j = 0; j <= mx; ++j) {
       dp[i][j] = max(dp[i][j], dp[i - 1][j]);
