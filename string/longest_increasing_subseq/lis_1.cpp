@@ -73,6 +73,7 @@ int main() {
       dfs(nxt);
     }
   };
+  // worst case: O(n^3)
   for (int i = 0; i < n; ++i) {
     dfs(i);
   }
