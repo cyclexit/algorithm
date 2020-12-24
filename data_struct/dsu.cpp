@@ -1,3 +1,9 @@
+// Learn from https://github.com/the-tourist/algo/blob/master/data/dsu.cpp
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
 class Dsu {
  public:
   int n;
