@@ -8,7 +8,7 @@ class FenwickTree {
   vector<T> sum;
   inline int low_bit(int x) {
     return x & -x;
-  };
+  }
  public:
   FenwickTree() = default;
   FenwickTree(int _n) : n(_n) {
