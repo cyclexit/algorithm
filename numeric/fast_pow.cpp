@@ -4,7 +4,7 @@ ll fast_pow(ll base, ll pow) {
   ll res = 1;
   while (pow) {
     if (pow & 1) res = res * base;
-    res = res * res;
+    base = base * base;
     pow >>= 1;
   }
   return res;
