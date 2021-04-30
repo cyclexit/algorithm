@@ -1,7 +1,10 @@
-typedef long long ll;
+#include <bits/stdc++.h>
 
-ll fast_pow(ll base, ll pow) {
-  ll res = 1;
+using namespace std;
+
+template<typename T>
+T fast_pow(T base, T pow) {
+  T res = 1;
   while (pow) {
     if (pow & 1) res = res * base;
     base = base * base;
@@ -10,8 +13,9 @@ ll fast_pow(ll base, ll pow) {
   return res;
 }
 
-ll fast_pow(ll base, ll pow, ll mod) {
-  ll res = 1;
+template<typename T>
+T fast_pow(T base, T pow, T mod) {
+  T res = 1;
   while (pow) {
     if (pow & 1) res = (res * base) % mod;
     base = (base * base) % mod;
